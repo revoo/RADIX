@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/feeds")
@@ -34,4 +35,11 @@ public class FeedController {
     public ResponseEntity<Feed> getFeed(@PathVariable("id") Long id) {
         return ResponseEntity.of(feedService.getFeed(id));
     }
+
+    @GetMapping
+    public ResponseEntity<List<Feed>> getFeeds() {
+        return ResponseEntity.ok(feedService.getFeeds());
+    }
+
+
 }

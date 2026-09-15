@@ -74,5 +74,8 @@ public class Feed {
     public String getScheduleTimezone() {
         return scheduleTimezone;
     }
+
+    // Domain Driven Design Mutators
+    // update Feed name?
 }
 

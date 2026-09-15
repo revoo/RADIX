@@ -1,7 +1,9 @@
 package com.radix.api.feed;
 
+import com.radix.api.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,5 +37,17 @@ public class FeedService {
 
     public Optional<Feed> getFeed(Long id) {
         return feedRepository.findById(id);
+    }
+
+    public List<Feed> getFeeds() {
+        return feedRepository.findAll();
+    }
+
+    public Feed patchFeed(Long id, UpdateFeedRequest updateFeedRequest) {
+        Feed feed = feedRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException());
+
+        // if exception wasn't thrown, feed was found and code will continue here
+
+
     }
 }
