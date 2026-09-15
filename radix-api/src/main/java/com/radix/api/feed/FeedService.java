@@ -47,7 +47,31 @@ public class FeedService {
         Feed feed = feedRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException());
 
         // if exception wasn't thrown, feed was found and code will continue here
+        // IF-statement cascade to implement PATCH semantics
+        if (updateFeedRequest.name() != null) {
+            feed.changeName(updateFeedRequest.name());
+        }
 
+        if (updateFeedRequest.source() != null) {
+            feed.changeSource(updateFeedRequest.source());
+        }
 
+        if (updateFeedRequest.description() != null) {
+            feed.changeDescription(updateFeedRequest.description());
+        }
+
+        if (updateFeedRequest.format() != null) {
+            feed.changeFormat(updateFeedRequest.format());
+        }
+
+        if (updateFeedRequest.scheduleRule() != null) {
+            feed.changeScheduleRule(updateFeedRequest.scheduleRule());
+        }
+
+        if (updateFeedRequest.scheduleTimezone() != null) {
+            feed.changeScheduleTimezone(updateFeedRequest.scheduleTimezone());
+        }
+
+        return feedRepository.save(feed);
     }
 }
