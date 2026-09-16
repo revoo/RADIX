@@ -41,5 +41,10 @@ public class FeedController {
         return ResponseEntity.ok(feedService.getFeeds());
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<Feed> patchFeed(@PathVariable("id") Long id, @RequestBody UpdateFeedRequest request) {
+        return ResponseEntity.ok(feedService.patchFeed(id, request));
+    }
+
 
 }
