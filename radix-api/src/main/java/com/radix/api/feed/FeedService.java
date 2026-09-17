@@ -44,7 +44,7 @@ public class FeedService {
     }
 
     public Feed patchFeed(Long id, UpdateFeedRequest updateFeedRequest) {
-        Feed feed = feedRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Feed " + id + " was not found!"));
+        Feed feed = feedRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Feed " + id + " was not found"));
 
         // if exception wasn't thrown, feed was found and code will continue here
         // IF-statement cascade to implement PATCH semantics
@@ -73,5 +73,10 @@ public class FeedService {
         }
 
         return feedRepository.save(feed);
+    }
+
+    public void deleteFeed(Long id) {
+        Feed feed = feedRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Feed " + id + " was not found"));
+        feedRepository.delete(feed);
     }
 }

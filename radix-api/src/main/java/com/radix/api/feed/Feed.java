@@ -77,42 +77,42 @@ public class Feed {
 
     public void changeName(String name) {
         if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("Invalid feed name!");
+            throw new IllegalArgumentException("Invalid feed name");
         }
         this.name = name;
     }
 
     public void changeSource(String source) {
         if (source == null || source.isBlank()) {
-            throw new IllegalArgumentException("Invalid source!");
+            throw new IllegalArgumentException("Invalid source");
         }
         this.source = source;
     }
 
     public void changeDescription(String description) {
         if (description == null) {
-            throw new IllegalArgumentException("Invalid description!");
+            throw new IllegalArgumentException("Invalid description");
         }
         this.description = description;
     }
 
     public void changeFormat(String format) {
         if (format == null || format.isBlank()) {
-            throw new IllegalArgumentException("Invalid format!");
+            throw new IllegalArgumentException("Invalid format");
         }
         this.format = format;
     }
 
     public void changeScheduleRule(String scheduleRule) {
         if (scheduleRule == null || scheduleRule.isBlank()) {
-            throw new IllegalArgumentException("Invalid schedule rule!");
+            throw new IllegalArgumentException("Invalid schedule rule");
         }
         this.scheduleRule = scheduleRule;
     }
 
     public void changeScheduleTimezone(String scheduleTimezone) {
         if (scheduleRule == null || scheduleRule.isBlank()) {
-            throw new IllegalArgumentException("Invalid schedule timezone!");
+            throw new IllegalArgumentException("Invalid schedule timezone");
         }
         this.scheduleTimezone = scheduleTimezone;
     }
