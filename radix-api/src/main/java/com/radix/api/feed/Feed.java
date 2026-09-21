@@ -8,7 +8,7 @@ public class Feed {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="feed_id")
+    @Column(name = "feed_id")
     private Long id;
 
     @Column(name = "name", nullable = false)
