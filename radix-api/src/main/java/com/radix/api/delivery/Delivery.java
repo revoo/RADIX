@@ -31,11 +31,7 @@ public class Delivery {
         // Required by JPA
     }
 
-    public Delivery(
-            Feed feed,
-            Instant scheduledFor,
-            Instant expectedAt
-    ) {
+    public Delivery(Feed feed, Instant scheduledFor, Instant expectedAt) {
         if (feed == null) {
             throw new IllegalArgumentException("Feed is required");
         }

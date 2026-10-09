@@ -25,4 +25,4 @@
      CONSTRAINT fk_delivery_attempt_delivery
          FOREIGN KEY (delivery_id)
          REFERENCES delivery(delivery_id)
- );x``
+ );
