@@ -27,19 +27,27 @@ public class DeliveryService {
     }
 
     @Transactional
-    public ScheduleDeliveryResult scheduleDelivery(Long feedId, Instant scheduledFor, Instant expectedAt) {
-        Feed feed = feedRepository.findById(feedId)
-                .orElseThrow(() -> new ResourceNotFoundException("Feed " + feedId + " was not found"));
+    public ScheduleDeliveryResult scheduleDelivery(
+            Long feedId,
+            Instant scheduledFor,
+            Instant expectedAt) {
 
-        Optional<Delivery> existing = deliveryRepository.findByFeedIdAndScheduledFor(feedId, scheduledFor);
+        // Preserve our existing 404 behavior.
+        feedRepository.findById(feedId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Feed " + feedId + " was not found"));
 
-        if (existing.isPresent()) {
-            return new ScheduleDeliveryResult(existing.get(), false);
-        }
+        // Atomic insert: PostgreSQL handles concurrent conflicts.
+        int inserted = deliveryRepository.insertIfAbsent(
+                feedId, scheduledFor, expectedAt);
 
-        Delivery delivery = deliveryRepository.save(new Delivery(feed, scheduledFor, expectedAt));
+        // Retrieve the authoritative Delivery, whether new or existing.
+        Delivery delivery = deliveryRepository
+                .findByFeedIdAndScheduledFor(feedId, scheduledFor)
+                .orElseThrow(() -> new IllegalStateException(
+                        "Delivery not found after insert attempt"));
 
-        return new ScheduleDeliveryResult(delivery, true);
+        return new ScheduleDeliveryResult(delivery, inserted == 1);
     }
 
     @Transactional
