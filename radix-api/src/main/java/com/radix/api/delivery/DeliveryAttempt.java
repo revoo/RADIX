@@ -3,6 +3,7 @@ package com.radix.api.delivery;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "delivery_attempt")
@@ -31,6 +32,12 @@ public class DeliveryAttempt {
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
+
+    @Column(name = "expected_report_date", nullable = false)
+    private LocalDate expectedReportDate;
+
+    @Column(name = "actual_report_date", nullable = true)
+    private LocalDate actualReportDate;
 
     protected DeliveryAttempt() {
         // Required by JPA
