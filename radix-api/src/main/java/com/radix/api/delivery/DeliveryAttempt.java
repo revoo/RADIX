@@ -33,9 +33,6 @@ public class DeliveryAttempt {
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
-    @Column(name = "expected_report_date", nullable = false)
-    private LocalDate expectedReportDate;
-
     @Column(name = "actual_report_date", nullable = true)
     private LocalDate actualReportDate;
 

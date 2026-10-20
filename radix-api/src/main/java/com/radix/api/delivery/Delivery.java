@@ -31,9 +31,6 @@ public class Delivery {
     @Column(name = "expected_report_date")
     private LocalDate expectedReportDate;
 
-    @Column(name = "actual_report_date")
-    private LocalDate actualReportDate;
-
     protected Delivery() {
         // Required by JPA
     }
